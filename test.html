@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    
+    <title>Realtime Temperature and Humility</title>
+
+ <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+ <script>
+   // Initialize Firebase
+   var config = {
+    apiKey: "AIzaSyDcjD_qRKD1g8UupWRydYzxYb4E9pe3B-o",
+    authDomain: "ooollll.firebaseapp.com",
+    databaseURL: "https://ooollll-default-rtdb.firebaseio.com",
+    projectId: "ooollll",
+    storageBucket: "ooollll.appspot.com",
+    messagingSenderId: "145845130490",
+    appId: "1:145845130490:web:05ac47eaef64056e70a543",
+    measurementId: "G-TYGRC4H1JJ"
+   };
+   firebase.initializeApp(config);
+
+/*
+
+     window.onload=function () {
+   
+        var firebaseRef = firebase.database().ref("humid");
+       firebaseRef.once('value').then(function(datasnapshot){
+        console.log(datasnapshot.val());
+    
+        
+        
+    })
+}*/
+setTimeout(function(){
+   window.location.reload(1);
+}, 5000);
+
+
+
+function myFunction() {
+    var firebaseRef = firebase.database().ref("humid");
+       firebaseRef.once('value').then(function(datasnapshot){
+        console.log(datasnapshot.val());
+  document.getElementById("field1").value =  datasnapshot.val();
+
+       })}
+
+       function myFunction2() {
+    var firebaseRef = firebase.database().ref("temp");
+       firebaseRef.once('value').then(function(datasnapshot){
+        console.log(datasnapshot.val());
+  document.getElementById("field2").value =  datasnapshot.val();
+       })}
+
+
+
+ </script>
+</head>
+<body>
+    <div class="card-header">
+        <h3 class="card-title"> Humidity+Temperature </h3>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">
+                <h3 class="card-title">Result</h3>
+            </div>
+            <div class="card-body">
+                <table class="table text-white">
+                    <thead>
+                      
+                    </thead>
+                    Humidity(% ): <h3  ><input type="text" id="field1">     %    </h3>    <button onclick="myFunction()">Update Humidity</button>  <br>   
+                    
+                    Temperature(°C):<h4  > <input type="text" id="field2">    °C   </h4>    <button onclick="myFunction2()">Update Temperature</button><br>   
+                    
+              
+         
+            </div>
+        </div>
+    </div>  
+    
+ 
+
+ 
+</body>
+</html>
